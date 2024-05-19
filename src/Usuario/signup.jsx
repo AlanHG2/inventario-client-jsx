@@ -1,5 +1,4 @@
-import '../node_modules/antd/dist/reset.css';
-import './styles/signup.css'
+import '../styles/signup.css'
 import { Link } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 const Signup = () => {

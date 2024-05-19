@@ -1,5 +1,4 @@
-import '../node_modules/antd/dist/reset.css';
-import './styles/landing.css'
+import '../styles/landing.css'
 import { Link } from 'react-router-dom';
 const Landing = () => {
     return (
