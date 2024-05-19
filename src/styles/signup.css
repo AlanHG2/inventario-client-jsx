@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Contenedor principal */
+.main_signup {
+    padding-top: 2.5%;
+    max-height: 100vh;
+}
+
+/* Contenedor logo y título */
+.top {
+    max-width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+
+    & img {
+        width: 125px;
+    }
+
+    & h1 {
+        margin-top: 3vh;
+        font-weight: 400;
+
+        & span {
+            font-weight: 500;
+        }
+
+        & .dot {
+            color: #E1605B;
+        }
+
+        & .first {
+            color: #9B241D;
+        }
+    }
+}
+
+/* Contenedores form y abajo*/
+.signup_form,
+.already-have-account {
+    max-width: 500px;
+    margin: 4vh auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.signup_form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2em;
+}
+
+#item_nombre,
+#item_email,
+#item_boton {
+    grid-column: span 2;
+}
+
+/* Estilo campos de entrada y labels*/
+#signup_form_nombre,
+#signup_form_apellido_p,
+#signup_form_apellido_m,
+#signup_form_email,
+#signup_form_usuario {
+    border: none;
+    box-shadow: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+    &:focus {
+        box-shadow: rgba(117, 0, 0, 0.12) 0px 1px 3px, rgba(177, 0, 0, 0.24) 0px 1px 2px;
+    }
+
+    &:hover {
+        box-shadow: rgba(117, 0, 0, 0.12) 0px 1px 3px, rgba(177, 0, 0, 0.24) 0px 1px 2px;
+
+    }
+}
+
+.signup_form :where(.css-dev-only-do-not-override-1okl62o).ant-form-item .ant-form-item-label>label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    content: "";
+}
+
+.signup_form label {
+    font-weight: 500;
+}
+
+.signup_form #item_password :where(.css-dev-only-do-not-override-1okl62o).ant-input-affix-wrapper>input.ant-input,
+:where(.css-dev-only-do-not-override-1okl62o).ant-input-affix-wrapper>textarea.ant-input {
+    box-shadow: none;
+}
+
+.signup_form #item_password :where(.css-dev-only-do-not-override-1okl62o).ant-input-outlined {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.signup_form #item_password :where(.css-dev-only-do-not-override-1okl62o).ant-input-outlined:focus-within,
+.signup_form #item_password :where(.css-dev-only-do-not-override-1okl62o).ant-input-outlined:hover {
+    box-shadow: rgba(117, 0, 0, 0.12) 0px 1px 3px, rgba(177, 0, 0, 0.24) 0px 1px 2px;
+}
+
+#boton_signup {
+    background-color: #B42B25;
+    width: 100%;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    border: none;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: #9B241D;
+
+    }
+
+    & span {
+        color: white;
+        box-shadow: none;
+        margin: 0 auto;
+    }
+}
+
+.already-have-account h3 {
+    font-size: 1.5vh;
+    font-weight: 400;
+    text-align: center;
+
+    & span a {
+        color: #E1605B;
+        transition: color .3s ease;
+        padding: 10px 2px;
+
+        &:hover {
+            color: #9B241D;
+        }
+    }
+}

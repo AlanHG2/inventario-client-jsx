@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+ul,
+h1 {
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+.header{
+    height: 10vh;
+    align-content: center;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 30px;
+    user-select: none;
+}
+
+.navbar .logo {
+    display: flex;
+}
+
+.navbar .logo img {
+    width: 100%;
+    max-width: 7vh;
+}
+
+.navbar .logo h1 {
+    align-self: center;
+    font-weight: 600;
+    color: #9B241D;
+    font-size: 3vh;
+    margin-left: 10px;
+
+    & .dot {
+        color: #E1605B;
+    }
+
+    & .last {
+        color: black;
+    }
+}
+
+.navbar .links {
+    display: flex;
+    align-self: center;
+}
+
+.navbar .links li {
+    margin: 0 8px;
+}
+
+.navbar .links li a {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 1.85vh;
+    font-weight: 500;
+    padding: 15px 20px;
+    transition: all .3s ease;
+
+    & i {
+        font-size: 2.1vh;
+        margin-left: 5px;
+    }
+}
+
+.navbar .links .signin a {
+    background: #B42B25;
+    color: rgb(255, 255, 255);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    &:hover {
+        background: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        color: #000000;
+    }
+
+}
+
+.navbar .links .login a:hover {
+    color: #B42B25;
+}
+
+.main_landing {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(70vh,1fr));
+    align-items: center;
+    height: 90vh;
+    margin: 0 14vh;
+}
+
+.main_landing #text {
+    & h1 {
+        font-size: 5vh;
+        font-weight: 600;
+        margin-bottom: 3vh;
+        & span{
+            color: #E1605B;
+        }
+    }
+
+    & p {
+        font-size: 1.9vh;
+        line-height: 25px;
+        margin-bottom: 3vh;
+    }
+
+    & a {
+        border-radius: 15px;
+        color: white;
+        padding: 15px 20px;
+        width: fit-content;
+        display: flex;
+        background: #B42B25;
+        transition: all .3s ease;
+        font-size: 1.9vh;
+        font-weight: 400;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        &:hover {
+            background: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            color: #000000;
+
+        }
+    }
+}
+
+.main_landing #image {
+    margin: 0 auto;
+    & img{
+        max-width: fit-content;
+        width: 100%;
+    }
+}

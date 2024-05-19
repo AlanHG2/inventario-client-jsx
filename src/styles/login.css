@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.main_login {
+    padding-top: 2.5%;
+    max-height: 100vh;
+}
+
+.top {
+    max-width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+
+    & img {
+        width: 125px;
+    }
+
+    & h1 {
+        margin-top: 3vh;
+        font-weight: 400;
+
+        & span {
+            font-weight: 500;
+        }
+
+        & .dot {
+            color: #E1605B;
+        }
+
+        & .first {
+            color: #9B241D;
+        }
+    }
+}
+
+.login_form,
+.nuevo {
+    max-width: 350px;
+    margin: 4vh auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.login_form :where(.css-dev-only-do-not-override-1okl62o).ant-form-item .ant-form-item-label>label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    content: "";
+}
+
+.login_form label {
+    font-weight: 500;
+}
+
+#login_form_user,
+#login_form_pass {
+    border: none;
+    box-shadow: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+#login_form_user:focus,#login_form_pass:focus,
+#login_form_user:hover,#login_form_pass:hover {
+    box-shadow: rgba(117, 0, 0, 0.12) 0px 1px 3px, rgba(177, 0, 0, 0.24) 0px 1px 2px;
+}
+
+#boton_login {
+    background-color: #B42B25;
+    width: 100%;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    border: none;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: #9B241D;
+    }
+
+    & span{
+        color: white;
+        box-shadow: none;
+        margin: 0 auto;
+    }
+}
+
+.nuevo h3 {
+    font-size: 1.5vh;
+    font-weight: 400;
+    text-align: center;
+
+    & span a {
+        color: #E1605B;
+        transition: color .3s ease;
+        padding: 10px 2px;
+
+        &:hover {
+            color: #9B241D;
+        }
+    }
+}
