@@ -1,9 +1,12 @@
-import { Empty, Flex, FloatButton, Modal, Spin, notification } from "antd";
-import { useEffect, useState } from "react";
+import { Empty, Flex, FloatButton, Spin, notification } from "antd";
+import { useCallback, useEffect, useState } from "react";
 import { CiBoxList } from "react-icons/ci";
 import { RiAddLargeFill } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
+import { deleteEspacio } from "../API/espacio";
 import DataCard from "../components/DataCard";
+import CreateEspacio from "./CreateEspacio";
+import EditEspacio from "./EditEspacio";
 
 
 const EspacioList = () => {
@@ -11,31 +14,60 @@ const EspacioList = () => {
     const { id_edificio } = useParams();
 
     const [Data, setData] = useState([]);
-    const [formModalOpen, setFormModalOpen] = useState(false);
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedEspacio, setselectedEspacio] = useState({});
     const [isLoading, setIsloading] = useState(false);
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchEspacios = async () => {
-            try {
-                setIsloading(true);
-                const response = await fetch('http://localhost:3000/API/espacios/edificio/' + id_edificio);
-                if (!response.ok) {
-                    throw new Error('No se pudo obtener los datos');
-                }
-
-                const data = await response.json();
-                setData(data);
-            } catch (error) {
-                console.error('Error al obtener los datos:', error);
-            } finally {
-                setIsloading(false);
+    const fetchEspacios = useCallback(async () => {
+        try {
+            setIsloading(true);
+            const response = await fetch('http://localhost:3000/API/espacios/edificio/' + id_edificio);
+            if (!response.ok) {
+                throw new Error('No se pudo obtener los datos');
             }
-        }
 
-        fetchEspacios();
-    }, [id_edificio])
+            const data = await response.json();
+            setData(data);
+        } catch (error) {
+            console.error('Error al obtener los datos:', error);
+        } finally {
+            setIsloading(false);
+        }
+    }, [id_edificio]);
+
+    useEffect(() => {
+        if (id_edificio) {
+            fetchEspacios();
+        }
+    }, [fetchEspacios, id_edificio]);
+
+    useEffect(() => {
+        if (isLoading) {
+            fetchEspacios();
+        }
+    }, [fetchEspacios, isLoading])
+
+    const handleEdit = (espacio) => {
+        setselectedEspacio(espacio);
+        setIsEditModalOpen(true);
+    }
+
+    const handleDelete = async (espacioId) => {
+        try {
+            const deletedEspacio = await deleteEspacio(espacioId);
+            if (!deletedEspacio) {
+                throw new Error('No fue posible eliminar el espacio');
+            }
+            notification.success({ message: 'Espacio eliminado correctamente' });
+            setIsloading(true);
+        } catch (error) {
+            notification.error({ message: 'No fue posible eliminar el espacio' });
+            console.error(error);
+        }
+    }
 
     return (
         <Spin spinning={isLoading}>
@@ -48,8 +80,8 @@ const EspacioList = () => {
                                 title={espacio.nombre}
                                 description={espacio.tipo}
                                 onClick={() => navigate(`/articulos/${espacio.id}`)}
-                                onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el espacio: ${espacio.nombre}` })}
-                                onEdit={() => notification.success({ message: 'Editando...', description: `Editando el espacio: ${espacio.nombre}` })}
+                                onDelete={() => handleDelete(espacio.id)}
+                                onEdit={() => handleEdit(espacio)}
                                 icon={<CiBoxList size={45} />}
                             />
                         ))
@@ -59,14 +91,19 @@ const EspacioList = () => {
                 <FloatButton
                     icon={<RiAddLargeFill />}
                     tooltip='Agregar espacio'
-                    onClick={() => setFormModalOpen(!formModalOpen)}
+                    onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
                 />
 
-                <Modal
-                    open={formModalOpen}
-                    onCancel={() => setFormModalOpen(false)}
+                <CreateEspacio
+                    edificioId={id_edificio} isOpen={isCreateModalOpen}
+                    setIsModalOpen={setIsCreateModalOpen} setIsReloading={setIsloading}
+                />
 
-                ></Modal>
+                <EditEspacio
+                    edificioId={id_edificio} isOpen={isEditModalOpen}
+                    setIsModalOpen={setIsEditModalOpen} setIsReloading={setIsloading}
+                    selectedEspacio={selectedEspacio}
+                />
             </Flex>
         </Spin>
     )

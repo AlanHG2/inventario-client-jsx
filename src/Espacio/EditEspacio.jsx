@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Modal, Typography, notification } from "antd";
-import { updateEdificio } from "../API/edificio";
-import FrmEdificio from "./FrmEdificio";
+import { updateEspacio } from "../API/espacio";
+import FrmEspacio from "./FrmEspacio";
 
-const EditEdificio = ({ isOpen, setIsModalOpen, setIsReloading, selectedEdificio, area_academica_id }) => {
+const EditEspacio = ({ isOpen, setIsModalOpen, setIsReloading, selectedEspacio, edificioId }) => {
 
     const onFinish = async (values) => {
         try {
@@ -11,17 +11,17 @@ const EditEdificio = ({ isOpen, setIsModalOpen, setIsReloading, selectedEdificio
                 Object.entries(values).map(([key, value]) => [key, (typeof (value) == 'number') ? value : value.trim()])
             );
 
-            const data = { ...trimmedValues, area_academica_id }
+            const data = { ...trimmedValues, edificioId }
 
-            const updatedEdificio = await updateEdificio(selectedEdificio.id, data);
-            if (!updatedEdificio) {
-                throw new Error('Hubo un error al actualizar el edificio');
+            const updatedEspacio = await updateEspacio(selectedEspacio.id, data);
+            if (!updatedEspacio) {
+                throw new Error('Hubo un error al actualizar el espacio');
             }
-            notification.success({ message: 'El edificio fue actualizado correctamente' });
+            notification.success({ message: 'El espacio fue actualizado correctamente' });
             setIsModalOpen(false);
             setIsReloading(true);
         } catch (error) {
-            notification.error({ message: 'No fue posible actualizar el edificio' });
+            notification.error({ message: 'No fue posible actualizar el espacio' });
             console.log(error);
         }
     };
@@ -38,15 +38,15 @@ const EditEdificio = ({ isOpen, setIsModalOpen, setIsReloading, selectedEdificio
             footer={null}
         >
             <Typography.Title level={2}>
-                Edita {selectedEdificio.nombre}
+                Edita {selectedEspacio.nombre}
             </Typography.Title>
-            <FrmEdificio
+            <FrmEspacio
                 onFinish={onFinish}
                 onCancel={handleCancel}
-                initialValues={selectedEdificio}
+                initialValues={selectedEspacio}
             />
         </Modal>
     );
 };
 
-export default EditEdificio
+export default EditEspacio
