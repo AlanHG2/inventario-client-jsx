@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Modal, Typography, notification } from "antd";
 import { updateAreaAcademica } from "../API/area";
 import { useMenu } from "../context/Menu";
 import FrmArea from "./FrmArea";
 
-// eslint-disable-next-line react/prop-types
 const EditArea = ({ isOpen, setIsModalOpen, setIsReloading, selectedArea, institutoId }) => {
 
     const { setIsMenuLoading } = useMenu();

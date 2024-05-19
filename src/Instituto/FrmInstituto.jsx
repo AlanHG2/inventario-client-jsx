@@ -2,7 +2,6 @@
 import { Button, Flex, Form, Input } from "antd";
 import { useEffect } from "react";
 
-// eslint-disable-next-line react/prop-types
 const FrmInstituto = ({ onFinish, onCancel, initialValues }) => {
     const [form] = Form.useForm();
 

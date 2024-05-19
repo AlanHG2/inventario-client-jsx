@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/API/'; // Reemplaza esto con la URL de tu API
+const BASE_URL = 'http://localhost:3000/API/';
 
 export const createAreaAcademica = async (areaData) => {
     try {
@@ -44,7 +44,7 @@ export const deleteAreaAcademica = async (id) => {
         if (!response.ok) {
             throw new Error('No se pudo eliminar el área académica');
         }
-        return response.json(); // Puedes cambiar esto si la API devuelve un mensaje de éxito
+        return response.json();
     } catch (error) {
         console.error(error);
     }
