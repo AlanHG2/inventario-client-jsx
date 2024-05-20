@@ -79,7 +79,7 @@ const AreaList = () => {
                                 key={area.id}
                                 title={area.nombre}
                                 description={area.codigo}
-                                onClick={() => navigate(`/edificios/${area.id}`)}
+                                onClick={() => navigate(`/app/edificios/${area.id}`)}
                                 onDelete={() => handleDelete(area.id)}
                                 onEdit={() => handleEdit(area)}
                                 icon={<HiOutlineAcademicCap size={45} />}

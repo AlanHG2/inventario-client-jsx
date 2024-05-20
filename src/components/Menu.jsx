@@ -23,7 +23,7 @@ const SideMenu = () => {
 
     const testItems = [
         {
-            key: '/institutos',
+            key: '/app/institutos',
             label: 'Institutos',
             title: 'Institutos',
             icon: <GrSettingsOption />,
@@ -36,24 +36,24 @@ const SideMenu = () => {
             children: instituto.area_academicas ? [
 
                 ...instituto.area_academicas.map(areaAcademica => ({
-                    key: '/edificios/' + areaAcademica.id,
+                    key: '/app/edificios/' + areaAcademica.id,
                     label: areaAcademica.nombre,
                 }))
 
             ] : [] // Opción predeterminada para áreas académicas
         })),
         {
-            key: '/Categorias',
+            key: '/app/Categorias',
             label: 'Categorías',
             icon: <BiCategory />,
         },
         {
-            key: '/Usuario',
+            key: '/app/Usuario',
             label: 'Usuario',
             icon: <BiUser />,
         },
         {
-            key: '/logout',
+            key: '/app/logout',
             label: 'Cerrar Sesión',
             icon: <BiExit />
         },

@@ -79,7 +79,7 @@ const EspacioList = () => {
                                 key={espacio.id}
                                 title={espacio.nombre}
                                 description={espacio.tipo}
-                                onClick={() => navigate(`/articulos/${espacio.id}`)}
+                                onClick={() => navigate(`/app/articulos/${espacio.id}`)}
                                 onDelete={() => handleDelete(espacio.id)}
                                 onEdit={() => handleEdit(espacio)}
                                 icon={<CiBoxList size={45} />}

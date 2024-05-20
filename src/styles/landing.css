@@ -18,7 +18,7 @@ a {
     text-decoration: none;
 }
 .header{
-    height: 10vh;
+    height: 100px;
     align-content: center;
 }
 .navbar {
@@ -34,7 +34,7 @@ a {
 
 .navbar .logo img {
     width: 100%;
-    max-width: 7vh;
+    max-width: 80px;
 }
 
 .navbar .logo h1 {
@@ -140,9 +140,7 @@ a {
 }
 
 .main_landing #image {
-    margin: 0 auto;
     & img{
-        max-width: fit-content;
         width: 100%;
     }
 }

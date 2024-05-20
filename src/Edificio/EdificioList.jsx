@@ -79,7 +79,7 @@ const EdificioList = () => {
                                 key={edificio.id}
                                 title={edificio.nombre}
                                 description={edificio.codigo}
-                                onClick={() => navigate(`/espacios/${edificio.id}`)}
+                                onClick={() => navigate(`/app/espacios/${edificio.id}`)}
                                 onDelete={() => handleDelete(edificio.id)}
                                 onEdit={() => handleEdit(edificio)}
                                 icon={<HiBuildingOffice2 size={45} />}
