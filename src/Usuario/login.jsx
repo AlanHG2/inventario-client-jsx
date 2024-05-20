@@ -1,6 +1,6 @@
-import '../styles/login.css'
+import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import '../styles/login.css';
 const Login = () => {
     return (
         <main className='main_login'>
@@ -49,7 +49,7 @@ const Login = () => {
             </Form>
 
             <div className="nuevo">
-                <h3>¿Eres nuevo? <span><Link to="/"  draggable="false">Crea una cuenta</Link></span></h3>
+                <h3>¿Eres nuevo? <span><Link to="/sigin"  draggable="false">Crea una cuenta</Link></span></h3>
             </div>
         </main>
     );

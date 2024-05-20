@@ -1,6 +1,6 @@
-import '../styles/signup.css'
+import { Button, Flex, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import '../styles/signup.css';
 const Signup = () => {
 
     return (
@@ -22,7 +22,7 @@ const Signup = () => {
                             {
                                 required: true,
                                 message: 'Ingresa un nombre válido',
-                                pattern:/^[a-zA-Z]+(?: [a-zA-Z]+)*$/
+                                pattern: /^[a-zA-Z]+(?: [a-zA-Z]+)*$/
                             },
                         ]}
                     >
@@ -32,6 +32,9 @@ const Signup = () => {
                     </Form.Item>
                 </div>
 
+                <Flex >
+
+                </Flex>
                 <Form.Item
                     label="Apellido paterno"
                     name="apellido_p"
@@ -39,7 +42,7 @@ const Signup = () => {
                         {
                             required: true,
                             message: 'Ingresa un apellido válido',
-                            pattern:/^[a-zA-ZÁÉÍÓÚÑáéíóúñ'-]+$/
+                            pattern: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ'-]+$/
                         },
                     ]}
                 >
@@ -54,7 +57,7 @@ const Signup = () => {
                         {
                             required: true,
                             message: 'Ingresa un apellido válido',
-                            pattern:/^[a-zA-ZÁÉÍÓÚÑáéíóúñ'-]+$/
+                            pattern: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ'-]+$/
                         },
                     ]}
                 >
@@ -70,7 +73,7 @@ const Signup = () => {
                             {
                                 required: true,
                                 message: 'Ingresa un e-mail válido',
-                                pattern:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
                             },
                         ]}
                     >
@@ -87,7 +90,7 @@ const Signup = () => {
                         {
                             required: true,
                             message: 'Ingresa un nombre de usuario válido',
-                            pattern:/^[a-zA-Z0-9]+$/
+                            pattern: /^[a-zA-Z0-9]+$/
                         },
                     ]}
                 >
@@ -103,7 +106,7 @@ const Signup = () => {
                             {
                                 required: true,
                                 message: 'Ingresa una contraseña válida (al menos 6 caracteres)',
-                                pattern:/^.{6,}$/
+                                pattern: /^.{6,}$/
                             },
                         ]}
                     >

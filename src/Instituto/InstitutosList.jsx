@@ -77,7 +77,7 @@ const InstitutosList = () => {
                   key={instituto.id}
                   title={instituto.nombre}
                   description={instituto.codigo}
-                  onClick={() => navigate(`/areas_academicas/${instituto.id}`)}
+                  onClick={() => navigate(`/app/areas_academicas/${instituto.id}`)}
                   onDelete={() => handleDelete(instituto.id)}
                   onEdit={() => handleEdit(instituto)}
                   icon={<FaUniversity size={45} />}

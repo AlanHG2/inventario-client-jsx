@@ -13,8 +13,8 @@ const Landing = () => {
                         </div>
                     </Link>
                     <ul className="links">
-                        <li className='login'><Link to="/"  draggable="false">Inicia Sesión <i className='bx bx-log-in-circle icon'></i></Link></li>
-                        <li className='signin'><Link to="/"  draggable="false">Regístrate <i className='bx bx-user-plus icon'></i></Link></li>
+                        <li className='login'><Link to="/login"  draggable="false">Inicia Sesión <i className='bx bx-log-in-circle icon'></i></Link></li>
+                        <li className='signin'><Link to="/sigin"  draggable="false">Regístrate <i className='bx bx-user-plus icon'></i></Link></li>
                     </ul>
                 </nav>
             </header>
@@ -25,7 +25,7 @@ const Landing = () => {
                         Descubre la nueva forma de gestionar todos los recursos de la universidad. Nuestro sistema de inventario te permite llevar un control preciso y actualizado de todos los activos y materiales.
                     </p>
 
-                    <Link to="/"  draggable="false">Comienza ahora</Link>
+                    <Link to="/login"  draggable="false">Comienza ahora</Link>
 
                 </div>
                 <div id='image'>
