@@ -1,193 +1,221 @@
-import { Modal, Select } from "antd";
-import TextArea from "antd/es/input/TextArea";
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { Button, Col, Flex, Form, Input, InputNumber, Row, Select, Typography } from "antd";
+import { useForm } from "antd/es/form/Form";
+import { useEffect } from "react";
+import { getCategorias } from "../API/categoria";
+import GenericSelect from "../components/GenericSelect";
+import '../styles/formIngreso.css';
+const FormArticulo = ({ onFinish, onCancel, initialValues }) => {
 
-const FormArticulo = ({ isOpen, setIsOpen }) => {
+    const [form] = useForm();
 
-    const handleCancel = () => setIsOpen(false);
-
-    const [camposInvalidos, setCamposInvalidos] = useState({});
-    const handleSubmit = () => {
-
-    }
-    // Estilos validación de campos
-    const handleInput = (event) => {
-        const campoId = event.target.id;
-        const nuevoEstado = { ...camposInvalidos };
-
-        if (!event.target.validity.valid) {
-            nuevoEstado[campoId] = true;
-        } else {
-            delete nuevoEstado[campoId];
-        }
-        setCamposInvalidos(nuevoEstado);
-    }
+    useEffect(() => {
+        form.setFieldsValue(initialValues);
+    }, [initialValues, form]);
 
     return (
-        <Modal
-            onCancel={handleCancel}
-            open={isOpen}
-            width={1100}
+        <Form
+            form={form}
+            name={`articuloFrm`}
+            onFinish={onFinish}
+            layout="vertical"
+            style={{ width: '100%' }}
         >
-            <form id='form_registro' onSubmit={handleSubmit}>
-                <div className='contenedor1'>
-                    <fieldset className='fs-categoria'>
-                        <legend>Categoría</legend>
-                        <label htmlFor="categoria">Categoría del artículo</label>
-                        <Select
-                            id='categoria'
-                            className='select'
-                            placement="bottomLeft"
-                            placeholder="Seleccionar"
-                            variant="outlined"
-                            required
-                            options={[
-                                { value: 'mobiliario', label: <span>Mobiliario</span> },
-                                { value: 'electronico', label: <span>Electrónico</span> },
+            <Flex vertical justify="center" style={{ width: '100%' }}>
+
+                <Typography.Title level={3} >
+                    Información obligatoria
+                </Typography.Title>
+                <Row gutter={16}>
+                    <Col xs={24} sm={12}>
+                        <Form.Item
+                            label='Nombre:'
+                            name='nombre'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'El nombre no es válido',
+                                    pattern: /^(?!^\s+|\s+$)[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9\s]+$/,
+                                }
                             ]}
-                        />
-                    </fieldset>
-
-                    <fieldset className='fs-ubicacion'>
-                        <legend>Ubicación</legend>
-                        <label htmlFor="espacio">Espacio</label>
-                        <Select
-                            id='espacio'
-                            className='select'
-                            placeholder="Seleccionar"
-                            variant="borderless"
-                            required
-                            options={[
-                                { value: '1', label: 'Opcion1' },
-                                { value: '2', label: 'Opcion2' },
-                                { value: '3', label: 'Opcion3' },
+                            style={{ width: '100%', minWidth: 200 }}
+                        >
+                            <Input placeholder="Nombre del artículo" />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                        <Form.Item
+                            label='Código:'
+                            name='codigo'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'El código no es válido',
+                                }
                             ]}
-                        />
-                    </fieldset>
+                            style={{ width: '100%', minWidth: 200 }}
+                        >
+                            <Input placeholder="Código del artículo" />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
-                    <fieldset className='fs-precio'>
-                        <legend>Precio</legend>
-                        <div className='entrada'>
-                            <input type="number" name="" id="precio" required onChange={handleInput} onBlur={handleInput} className={camposInvalidos['precio'] ? 'invalido' : ''} />
-                            <label htmlFor="precio" className={camposInvalidos['precio'] ? 'invalido' : ''}>Precio $</label>
-                        </div>
-                    </fieldset>
-                </div>
+                <Form.Item
+                    label='Descripcion:'
+                    name='descripcion'
+                    rules={[
+                        {
+                            required: true,
+                            message: 'La descripción del artículo es requerida',
+                        }
+                    ]}
+                >
+                    <Input.TextArea placeholder="Ingresa la descripción del artículo" rows={3} />
+                </Form.Item>
 
-                <div className='contenedor2'>
-                    <fieldset className='fs-inf-gral'>
-                        <legend className='leyenda'>Información General del Artículo</legend>
-                        <div className='entrada'>
-                            <input type="text" id='nombre' required onChange={handleInput} onBlur={handleInput} className={camposInvalidos['nombre'] ? 'invalido' : ''} />
-                            <label htmlFor="nombre" className={camposInvalidos['nombre'] ? 'invalido' : ''}>Nombre</label>
-                        </div>
-                        <div className='entrada'>
-                            <input type="text" name="" id="num_serie" required onChange={handleInput} onBlur={handleInput} className={camposInvalidos['num_serie'] ? 'invalido' : ''} />
-                            <label htmlFor="num_serie" className={camposInvalidos['num_serie'] ? 'invalido' : ''}>Número de serie</label>
-                        </div>
+                <Row gutter={16}>
+                    <Col xs={24} sm={12} lg={8}>
+                        <Form.Item
+                            label="Precio:"
+                            name="precio"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'El precio no es válido',
+                                },
+                            ]}
+                        >
+                            <InputNumber placeholder="Precio" min={0} prefix="$" style={{ width: '100%' }} />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12} lg={8}>
+                        <Form.Item
+                            label="Cantidad:"
+                            name="cantidad"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'La cantidad no es válida',
+                                },
+                            ]}
+                        >
+                            <InputNumber placeholder="Cantidad" min={0} style={{ width: '100%' }} />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12} lg={8}>
+                        <Form.Item
+                            label="Posición:"
+                            name="posicion"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'La posición no es válida',
+                                },
+                            ]}
+                        >
+                            <InputNumber placeholder="Posición" min={0} max={100} style={{ width: '100%' }} />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
-                        <div className='txt-area'>
-                            <label htmlFor="descripcion">Descripción</label>
-                            <TextArea
-                                id='descripcion'
-                                autoSize={{
-                                    minRows: 3,
-                                    maxRows: 5,
-                                }}
+                <Row gutter={16}>
+                    <Col xs={24} sm={12}>
+                        <Form.Item
+                            label="Estado:"
+                            name="estado"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'El estado no es válido',
+                                },
+                            ]}
+                            style={{ width: '100%', minWidth: 200 }}
+                        >
+                            <Select placeholder='Estado del artículo'>
+                                <Select.Option value="Nuevo">Nuevo</Select.Option>
+                                <Select.Option value="Bueno">Bueno</Select.Option>
+                                <Select.Option value="Regular">Regular</Select.Option>
+                                <Select.Option value="Deteriorado">Deteriorado</Select.Option>
+                                <Select.Option value="Inservible">Inservible</Select.Option>
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                        <Form.Item
+                            label="Categoría:"
+                            name="categoria_id"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'La categoría no es válida',
+                                },
+                            ]}
+                            style={{ width: '100%', minWidth: 200 }}
+                        >
+                            <GenericSelect
+                                fetchData={getCategorias}
+                                onChange={(value) => form.setFieldValue('categoria_id', value)}
+                                value={form.getFieldValue('categoria_id')}
                             />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
-                        </div>
+                <Typography.Title level={3} >
+                    Información adicional
+                </Typography.Title>
 
-
-                        <div className='estado'>
-                            <label className='titulo-estado' htmlFor="estado">Estado</label>
-                            <div className="radiobtn">
-                                <input type="radio" id='danado' name='estado' />
-                                <label htmlFor="danado">Dañado</label>
-                            </div>
-                            <div className="radiobtn">
-                                <input type="radio" id='funcional' name='estado' />
-                                <label htmlFor="funcional" >Funcional</label>
-                            </div>
-                            <div className="radiobtn">
-                                <input type="radio" id='nuevo' name='estado' />
-                                <label htmlFor="nuevo">Nuevo</label>
-                            </div>
-                        </div>
-
-                        <div className='entrada'>
-                            <input type="text" name="" id="codigo" required onChange={handleInput} onBlur={handleInput} className={camposInvalidos['codigo'] ? 'invalido' : ''} />
-                            <label htmlFor="codigo" className={camposInvalidos['codigo'] ? 'invalido' : ''}>Código</label>
-                        </div>
-                    </fieldset>
-
-                    <fieldset className='fs-opcional'>
-                        <legend>Información Opcional</legend>
-
-                        <div className='item1'>
-                            <div className='entrada-opc'>
-                                <input type="text" id='posicion' placeholder='' />
-                                <label htmlFor="posicion">Posición</label>
-                            </div>
-                        </div>
-                        <div className='item2'>
-                            <div className='entrada-opc'>
-                                <input type="text" name="" id="dimensiones" placeholder='' />
-                                <label htmlFor="dimensiones">Dimensiones</label>
-                            </div>
-                        </div>
-
-                        <div className='item3'>
-                            <div className="entrada-opc">
-                                <input type="text" name="" id="marca" placeholder='' />
-                                <label htmlFor="marca">Marca</label>
-                            </div>
-                        </div>
-                        <div className='item4'>
-                            <label htmlFor="color">Color</label>
-                            <Select
-                                id='color'
-                                className='select'
-                                placement="bottomLeft"
-                                placeholder="Seleccionar"
-                                variant="borderless"
-                                required
-                                options={[
-                                    { value: 'negro', label: <span>Negro</span> },
-                                    { value: 'blanco', label: <span>Blanco</span> },
-                                    { value: 'gris', label: <span>Gris</span> },
-                                    { value: 'azul', label: <span>Azul</span> },
-                                    { value: 'cafe', label: <span>Café</span> },
-                                    { value: 'rojo', label: <span>Rojo</span> },
-                                    { value: 'verde', label: <span>Verde</span> },
-                                ]}
-                            />
-                        </div>
-
-                        <div className='item5'>
-                            <label htmlFor="material">Material</label>
-                            <Select
-                                id='material'
-                                className='select'
-                                placement="bottomLeft"
-                                placeholder="Seleccionar"
-                                variant="borderless"
-                                required
-                                options={[
-                                    { value: 'negro', label: <span>Madera</span> },
-                                    { value: 'blanco', label: <span>Plástico</span> },
-                                    { value: 'gris', label: <span>Aluminio</span> },
-                                    { value: 'azul', label: <span>Acero</span> },
-                                    { value: 'cafe', label: <span>Tela</span> }
-                                ]}
-                            />
-                        </div>
+                <Row gutter={16}>
+                    <Col xs={24} sm={12}>
+                        <Form.Item
+                            label="Marca:"
+                            name={['caracteristicas', 'marca']}
+                            rules={[
+                                {
+                                    message: 'La marca no es válida',
+                                },
+                            ]}
+                            style={{ width: '100%', minWidth: 200 }}
+                        >
+                            <Input placeholder="Marca del artículo" />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                        <Form.Item
+                            label="Color:"
+                            name={['caracteristicas', 'color']}
+                            rules={[
+                                {
+                                    message: 'El color no es válido',
+                                },
+                            ]}
+                            style={{ width: '100%', minWidth: 200 }}
+                        >
+                            <Select placeholder='Color del artículo'>
+                                <Select.Option value="Rojo">Rojo</Select.Option>
+                                <Select.Option value="Azul">Azul</Select.Option>
+                                <Select.Option value="Verde">Verde</Select.Option>
+                                <Select.Option value="Amarillo">Amarillo</Select.Option>
+                                <Select.Option value="Naranja">Naranja</Select.Option>
+                                <Select.Option value="Negro">Negro</Select.Option>
+                                <Select.Option value="Blanco">Blanco</Select.Option>
+                                <Select.Option value="Gris">Gris</Select.Option>
+                                <Select.Option value="Marrón">Marrón</Select.Option>
+                                <Select.Option value="Rosa">Rosa</Select.Option>
+                                <Select.Option value="Morado">Morado</Select.Option>
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                </Row>
 
 
-                    </fieldset>
-                </div>
-            </form>
-        </Modal>
+                <Flex gap={8} justify="end">
+                    <Button type="default" onClick={onCancel}>Cancelar</Button>
+                    <Button type="primary" htmlType="submit" >{initialValues.nombre ? 'Editar' : 'Agregar'}</Button>
+                </Flex>
+            </Flex>
+
+        </Form>
     )
 }
 

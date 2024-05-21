@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/API/'; // Reemplaza esto con la URL de tu API
+const BASE_URL = 'http://localhost:3000/API/'; 
 
 export const createCategoria = async (categoriaData) => {
     try {
@@ -44,7 +44,7 @@ export const deleteCategoria = async (id) => {
         if (!response.ok) {
             throw new Error('No se pudo eliminar la categoría');
         }
-        return response; // Puedes cambiar esto si la API devuelve un mensaje de éxito
+        return response; 
     } catch (error) {
         console.error(error);
     }
