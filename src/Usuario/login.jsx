@@ -1,7 +1,26 @@
-import { Button, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Form, Input, notification } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { authUsuario } from '../API/usuario';
 import '../styles/login.css';
 const Login = () => {
+    const navigate = useNavigate();
+    const onFinish = async (values) => {
+        try {
+            const loggedUser = await authUsuario(values);
+            if (!loggedUser) {
+                throw new Error('Error al iniciar sesión');
+            }
+            notification.success({ message: 'Bienvenid@' });
+            navigate('/app');
+        } catch (error) {
+            notification.error({ message: 'No fue posible inicar sesión', description: 'Verifica las credenciales o intenta más tarde' });
+        }
+    }
+
+    const onFinishFailed = () => {
+        notification.warning({ message: 'Credenciales Inválidas', description: 'Verifica la información proporcionada' });
+    }
+
     return (
         <main className='main_login'>
             <section className="top">
@@ -12,24 +31,26 @@ const Login = () => {
                 layout='vertical'
                 name='login_form'
                 className='login_form'
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
             >
                 <Form.Item
-                    label="Usuario"
-                    name="user"
+                    label="Email:"
+                    name="email"
                     rules={[
                         {
                             required: true,
-                            message: 'Ingresa tu nombre de usuario',
+                            message: 'Ingresa tu email asociado',
                         },
                     ]}
                 >
-                    <Input 
-                    placeholder='Usuario'
+                    <Input
+                        placeholder='example@example.com'
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Contraseña"
-                    name="pass"
+                    label="Contraseña:"
+                    name="password"
                     rules={[
                         {
                             required: true,
@@ -37,8 +58,8 @@ const Login = () => {
                         },
                     ]}
                 >
-                    <Input 
-                    placeholder='Contraseña'
+                    <Input
+                        placeholder='Contraseña'
                     />
                 </Form.Item>
                 <Form.Item>
@@ -49,7 +70,7 @@ const Login = () => {
             </Form>
 
             <div className="nuevo">
-                <h3>¿Eres nuevo? <span><Link to="/sigin"  draggable="false">Crea una cuenta</Link></span></h3>
+                <h3>¿Eres nuevo? <span><Link to="/sigin" draggable="false">Crea una cuenta</Link></span></h3>
             </div>
         </main>
     );

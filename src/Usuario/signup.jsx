@@ -1,7 +1,28 @@
-import { Button, Flex, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Flex, Form, Input, notification } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUsuario } from '../API/usuario';
 import '../styles/signup.css';
 const Signup = () => {
+    const navigate = useNavigate();
+
+    const onFinish = async (values) => {
+        try {
+            const data = { ...values, rol: 'admin' };
+            const loggedUser = await createUsuario(data);
+            if (!loggedUser) {
+                throw new Error('Error al crear el usuario');
+            }
+            notification.success({ message: 'Bienvenid@' });
+            navigate('/app');
+        } catch (error) {
+            notification.error({ message: 'Usuario no creado', description: 'Verifica la información o intenta más tarde' });
+        }
+    }
+
+    const onFinishFailed = () => {
+        notification.warning({ message: 'Información no válida', description: 'Verifica la información proporcionada' });
+    }
+
 
     return (
         <main className='main_signup'>
@@ -13,6 +34,8 @@ const Signup = () => {
                 layout='vertical'
                 name='signup_form'
                 className='signup_form'
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
             >
                 <div id='item_nombre'>
                     <Form.Item
@@ -37,7 +60,7 @@ const Signup = () => {
                 </Flex>
                 <Form.Item
                     label="Apellido paterno"
-                    name="apellido_p"
+                    name="apellido_paterno"
                     rules={[
                         {
                             required: true,
@@ -52,7 +75,7 @@ const Signup = () => {
                 </Form.Item>
                 <Form.Item
                     label="Apellido materno"
-                    name="apellido_m"
+                    name="apellido_materno"
                     rules={[
                         {
                             required: true,
@@ -85,7 +108,7 @@ const Signup = () => {
 
                 <Form.Item
                     label="Nombre de usuario"
-                    name="usuario"
+                    name="username"
                     rules={[
                         {
                             required: true,
@@ -101,7 +124,7 @@ const Signup = () => {
                 <div id='item_password'>
                     <Form.Item
                         label="Contraseña"
-                        name="contrasena"
+                        name="password"
                         rules={[
                             {
                                 required: true,

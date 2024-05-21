@@ -9,7 +9,6 @@ import EdificioList from './Edificio/EdificioList';
 import EspacioList from './Espacio/EspacioList';
 import InstitutosList from './Instituto/InstitutosList';
 import SideMenu from './components/Menu';
-import Landing from './components/landing';
 
 export const MainLayout = () => {
     return (
@@ -31,7 +30,7 @@ export const MainLayout = () => {
                     }}
                 >
                     <Routes>
-                        <Route path='/' element={<Landing />} />
+                        <Route path='/' element={<InstitutosList />} />
                         <Route path='/institutos' element={<InstitutosList />} />
                         <Route path='/areas_academicas/:id_instituto' element={<AreaList />} />
                         <Route path='/edificios/:id_area' element={<EdificioList />} />
