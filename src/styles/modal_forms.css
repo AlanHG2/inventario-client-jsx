@@ -61,13 +61,13 @@
 
         }
 
-        & :where(.css-dev-only-do-not-override-1okl62o).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-            background-color: red !important;
-        }
 
     }
 }
-
+#articuloFrm_categoria_id_help .ant-form-item-explain-error,
+#articuloFrm_estado_help .ant-form-item-explain-error{
+    margin-top: 10px;
+}
 :where(.css-dev-only-do-not-override-1okl62o).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
     background-color: rgb(245, 196, 196) !important;
 }
