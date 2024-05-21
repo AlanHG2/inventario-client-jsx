@@ -67,15 +67,14 @@ a {
     font-weight: 500;
 }
 
-#login_form_user,
-#login_form_pass {
+.login_form input {
     border: none;
     box-shadow: none;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
-#login_form_user:focus,#login_form_pass:focus,
-#login_form_user:hover,#login_form_pass:hover {
+.login_form input:hover,
+.login_form input:focus {
     box-shadow: rgba(117, 0, 0, 0.12) 0px 1px 3px, rgba(177, 0, 0, 0.24) 0px 1px 2px;
 }
 

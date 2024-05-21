@@ -1,6 +1,7 @@
 import { Layout } from 'antd';
 import { Route, Routes } from 'react-router-dom';
 import '../node_modules/antd/dist/reset.css';
+import './styles/modal_forms.css'
 import { MainLayout } from './MainLayout';
 import Login from './Usuario/login';
 import Sigin from './Usuario/signup';

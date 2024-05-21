@@ -76,10 +76,10 @@ a {
 
 /* Estilo campos de entrada y labels*/
 #signup_form_nombre,
-#signup_form_apellido_p,
-#signup_form_apellido_m,
+#signup_form_apellido_paterno,
+#signup_form_apellido_materno,
 #signup_form_email,
-#signup_form_usuario {
+#signup_form_username {
     border: none;
     box-shadow: none;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;

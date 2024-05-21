@@ -13,18 +13,24 @@ const Profile = () => {
                 name='signup_form'
                 className='signup_form'
             >
-                <div id='item_nombre'>
+                <div id='item_email'>
                     <Form.Item
-                        label="Nombre de usuario"
-                        name="usuario"
+                        label="e-mail"
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Ingresa un e-mail válido',
+                                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                            },
+                        ]}
                     >
                         <Input
                             disabled
-                            placeholder='Nombre de usuario'
+                            placeholder='ejemplo@gmail.com'
                         />
                     </Form.Item>
                 </div>
-
                 <div id='item_nombre'>
                     <Form.Item
                         label="Nombre"
@@ -73,23 +79,7 @@ const Profile = () => {
                         placeholder='Apellido materno'
                     />
                 </Form.Item>
-                <div id='item_email'>
-                    <Form.Item
-                        label="e-mail"
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Ingresa un e-mail válido',
-                                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-                            },
-                        ]}
-                    >
-                        <Input
-                            placeholder='ejemplo@gmail.com'
-                        />
-                    </Form.Item>
-                </div>
+
 
 
 

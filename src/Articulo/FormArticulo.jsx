@@ -75,46 +75,54 @@ const FormArticulo = ({ onFinish, onCancel, initialValues }) => {
 
                 <Row gutter={16}>
                     <Col xs={24} sm={12} lg={8}>
-                        <Form.Item
-                            label="Precio:"
-                            name="precio"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'El precio no es válido',
-                                },
-                            ]}
-                        >
-                            <InputNumber placeholder="Precio" min={0} prefix="$" style={{ width: '100%' }} />
-                        </Form.Item>
+                        <div id="item_precio">
+                            <Form.Item
+                                label="Precio:"
+                                name="precio"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'El precio no es válido',
+                                    },
+                                ]}
+                            >
+                                <InputNumber placeholder="Precio" min={0} prefix="$" style={{ width: '100%' }} />
+                            </Form.Item>
+                        </div>
                     </Col>
                     <Col xs={24} sm={12} lg={8}>
-                        <Form.Item
-                            label="Cantidad:"
-                            name="cantidad"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'La cantidad no es válida',
-                                },
-                            ]}
-                        >
-                            <InputNumber placeholder="Cantidad" min={0} style={{ width: '100%' }} />
-                        </Form.Item>
+                        <div id='item_cantidad'>
+                            <Form.Item
+                                label="Cantidad:"
+                                name="cantidad"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'La cantidad no es válida',
+                                    },
+                                ]}
+                            >
+                                <InputNumber placeholder="Cantidad" min={0} style={{ width: '100%' }} />
+                            </Form.Item>
+                        </div>
+
                     </Col>
                     <Col xs={24} sm={12} lg={8}>
-                        <Form.Item
-                            label="Posición:"
-                            name="posicion"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'La posición no es válida',
-                                },
-                            ]}
-                        >
-                            <InputNumber placeholder="Posición" min={0} max={100} style={{ width: '100%' }} />
-                        </Form.Item>
+                        <div id="item_posicion">
+                            <Form.Item
+                                label="Posición:"
+                                name="posicion"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'La posición no es válida',
+                                    },
+                                ]}
+                            >
+                                <InputNumber placeholder="Posición" min={0} max={100} style={{ width: '100%' }} />
+                            </Form.Item>
+                        </div>
+
                     </Col>
                 </Row>
 
